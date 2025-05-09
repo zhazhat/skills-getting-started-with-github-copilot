@@ -46,5 +46,43 @@
     </footer>
 
     <script src="app.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const activitiesList = document.getElementById("activities-list");
+
+        // Example data fetching (replace with actual API call)
+        const activities = {
+          "Chess Club": {
+            description: "Learn strategies and compete in chess tournaments",
+            schedule: "Fridays, 3:30 PM - 5:00 PM",
+            participants: ["michael@mergington.edu", "daniel@mergington.edu"],
+          },
+          "Programming Class": {
+            description: "Learn programming fundamentals and build software projects",
+            schedule: "Tuesdays and Thursdays, 3:30 PM - 4:30 PM",
+            participants: ["emma@mergington.edu", "sophia@mergington.edu"],
+          },
+        };
+
+        activitiesList.innerHTML = ""; // Clear loading message
+
+        for (const [name, details] of Object.entries(activities)) {
+          const card = document.createElement("div");
+          card.className = "activity-card";
+
+          card.innerHTML = `
+            <h4>${name}</h4>
+            <p><strong>Description:</strong> ${details.description}</p>
+            <p><strong>Schedule:</strong> ${details.schedule}</p>
+            <p><strong>Participants:</strong></p>
+            <ul>
+              ${details.participants.map((participant) => `<li>${participant}</li>`).join("")}
+            </ul>
+          `;
+
+          activitiesList.appendChild(card);
+        }
+      });
+    </script>
   </body>
 </html>
